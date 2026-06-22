@@ -7,14 +7,14 @@
 ### Fit soil water‑retention & hydraulic‑conductivity curves — beautifully.
 
 A polished desktop app for **soil hydraulic property** estimation across the
-full moisture range: **45 retention models × 4 conductivity models**, model
+full moisture range: **72 retention models × 4 conductivity models**, model
 comparison, bootstrap confidence bands, and a clean HYPROP‑style interface.
 
 <p>
 <a href="../../releases/latest"><img src="https://img.shields.io/badge/download-installer-1f4e79?style=for-the-badge&logo=windows" alt="Download"></a>
 </p>
 
-<img src="https://img.shields.io/badge/retention_models-45-2e86c1">
+<img src="https://img.shields.io/badge/retention_models-72-2e86c1">
 <img src="https://img.shields.io/badge/conductivity_models-4-2e86c1">
 <img src="https://img.shields.io/badge/platform-Windows%20x64-555">
 <img src="https://img.shields.io/badge/engine-NumPy%20%2B%20SciPy-1e8449">
@@ -26,7 +26,7 @@ comparison, bootstrap confidence bands, and a clean HYPROP‑style interface.
 
 ## ✨ Highlights
 
-- 🧮 **45 retention models** — 5 basic functions × {uni·bi·tri‑modal} × {original·Brunswick·PDI}
+- 🧮 **72 retention models** — 8 basic functions × {uni·bi·tri‑modal} × {original·Brunswick·PDI}
 - 💧 **4 conductivity models** — pick any with any retention curve
 - 📊 **Model comparison** — overlay curves + sortable leaderboard (NSE, AICc)
 - 🎯 **Bootstrap uncertainty** — parameter CIs + shaded 95 % curve bands
@@ -37,7 +37,7 @@ comparison, bootstrap confidence bands, and a clean HYPROP‑style interface.
 
 ## 🌱 Retention models
 
-**5 basic functions × 3 pore‑system modes (unimodal · bimodal · trimodal) × 3 variants.**
+**8 basic functions × 3 pore‑system modes (unimodal · bimodal · trimodal) × 3 variants.**
 
 | Variant | Reference | Non‑capillary (film/adsorptive) treatment |
 |---|---|---|
@@ -46,7 +46,8 @@ comparison, bootstrap confidence bands, and a clean HYPROP‑style interface.
 | **PDI**       | Peters, Durner & Iden 2024 *(VZJ)* | smoothed piecewise‑linear `S_nc`, air‑entry from `S_c` |
 
 > Basic functions: **van Genuchten** (m = 1−1/n) · **van Genuchten** (m, n free) ·
-> **Brooks–Corey** · **Kosugi** · **Fredlund–Xing**.
+> **Brooks–Corey** · **Kosugi** · **Fredlund–Xing** · **Brutsaert** (1966) ·
+> **Tani** (1982) · **Russo** (1988).
 > Brunswick & PDI force θ → 0 at oven dryness (pF 6.8).
 
 ## 💧 Conductivity models
