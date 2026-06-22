@@ -1,0 +1,8 @@
+# Installer-distribution repo — track only the installer + docs.
+# Everything else (source, build bundle, envs) stays local.
+*
+!.gitignore
+!README.md
+!LICENSE
+!icon.png
+!SWRC-HCC-Fitter-setup.exe
