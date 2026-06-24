@@ -12,8 +12,12 @@ fit objectives, two kinds of uncertainty, colour‑coded model comparison, and a
 clean HYPROP‑style interface — all in an embedded window, no browser required.
 
 <p>
+<a href="https://PTF.bluerror.com/"><img src="https://img.shields.io/badge/▶_use_it_online-no_install-2e8b57?style=for-the-badge&logo=firefoxbrowser&logoColor=white" alt="Use it online"></a>
+&nbsp;
 <a href="../../releases/latest"><img src="https://img.shields.io/badge/download-installer-1f4e79?style=for-the-badge&logo=windows" alt="Download"></a>
 </p>
+
+<b>▶ Try it right now in your browser — no install: <a href="https://PTF.bluerror.com/">PTF.bluerror.com</a></b>
 
 <img src="https://img.shields.io/badge/retention_models-72-2e86c1">
 <img src="https://img.shields.io/badge/conductivity_models-4-2e86c1">
