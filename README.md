@@ -19,6 +19,8 @@ clean HYPROP‑style interface — all in an embedded window, no browser require
 
 <b>▶ Try it right now in your browser — no install: <a href="https://PTF.bluerror.com/">PTF.bluerror.com</a></b>
 
+<b>📖 Full user manual with worked examples: <a href="https://bluerror.com/manual.html">bluerror.com/manual.html</a></b>
+
 <img src="https://img.shields.io/badge/retention_models-72-2e86c1">
 <img src="https://img.shields.io/badge/conductivity_models-4-2e86c1">
 <img src="https://img.shields.io/badge/objectives-nRMSE_·_NSE_·_NLL-8e44ad">
