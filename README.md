@@ -7,7 +7,7 @@
 ### Fit soil water‑retention & hydraulic‑conductivity curves — beautifully.
 
 A polished desktop app for **soil hydraulic property** estimation across the
-full moisture range: **108 retention models × 4 conductivity models**, three
+full moisture range: **108 retention models × 6 conductivity models**, three
 fit objectives, two kinds of uncertainty, colour‑coded model comparison, and a
 clean HYPROP‑style interface — all in an embedded window, no browser required.
 
@@ -22,7 +22,7 @@ clean HYPROP‑style interface — all in an embedded window, no browser require
 <b>📖 Full user manual with worked examples: <a href="https://bluerror.com/manual.html">bluerror.com/manual.html</a></b>
 
 <img src="https://img.shields.io/badge/retention_models-108-2e86c1">
-<img src="https://img.shields.io/badge/conductivity_models-4-2e86c1">
+<img src="https://img.shields.io/badge/conductivity_models-6-2e86c1">
 <img src="https://img.shields.io/badge/objectives-nRMSE_·_NSE_·_NLL-8e44ad">
 <img src="https://img.shields.io/badge/platform-Windows%20x64-555">
 <img src="https://img.shields.io/badge/engine-NumPy%20%2B%20SciPy-1e8449">
@@ -35,7 +35,7 @@ clean HYPROP‑style interface — all in an embedded window, no browser require
 ## ✨ Highlights
 
 - 🧮 **108 retention models** — 12 basic functions × {uni·bi·tri‑modal} × {original·Brunswick·PDI}
-- 💧 **4 conductivity models** — any capillary‑bundle model with any retention curve
+- 💧 **6 conductivity models** — 4 capillary‑bundle (Mualem/Burdine/AS/CCG) + Gardner exponential & power, each usable with any retention curve
 - 🎯 **Three fit objectives** — **nRMSE**, **NSE**, or Gaussian **NLL** (puts θ and K on one scale)
 - 📈 **Two uncertainty modes** — **bootstrap** CIs/bands, *or* **likelihood (NLL)** uncertainty with calibrated or user‑given σ
 - 🌈 **Model comparison** — `Ctrl`+click models to overlay; each curve a distinct colour with its own matching 95 % band
@@ -75,6 +75,8 @@ combinable with **every** retention curve:
 | **Burdine** | Burdine 1953 | `q=2, r=1` |
 | **Alexander–Skaggs** | Alexander & Skaggs 1986 | `q=1, r=1` |
 | **Childs–Collis‑George** | Childs & Collis‑George 1950 | moment integral |
+| **Gardner (exponential)** | Gardner 1958 | `K = Ks·exp(−kg·h)` |
+| **Gardner (power)** | Gardner 1958 | `K = Ks/[1+(h/hk)^pk]` |
 
 ---
 
