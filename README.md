@@ -7,7 +7,7 @@
 ### Fit soil water‑retention & hydraulic‑conductivity curves — beautifully.
 
 A polished desktop app for **soil hydraulic property** estimation across the
-full moisture range: **72 retention models × 4 conductivity models**, three
+full moisture range: **108 retention models × 4 conductivity models**, three
 fit objectives, two kinds of uncertainty, colour‑coded model comparison, and a
 clean HYPROP‑style interface — all in an embedded window, no browser required.
 
@@ -21,7 +21,7 @@ clean HYPROP‑style interface — all in an embedded window, no browser require
 
 <b>📖 Full user manual with worked examples: <a href="https://bluerror.com/manual.html">bluerror.com/manual.html</a></b>
 
-<img src="https://img.shields.io/badge/retention_models-72-2e86c1">
+<img src="https://img.shields.io/badge/retention_models-108-2e86c1">
 <img src="https://img.shields.io/badge/conductivity_models-4-2e86c1">
 <img src="https://img.shields.io/badge/objectives-nRMSE_·_NSE_·_NLL-8e44ad">
 <img src="https://img.shields.io/badge/platform-Windows%20x64-555">
@@ -34,7 +34,7 @@ clean HYPROP‑style interface — all in an embedded window, no browser require
 
 ## ✨ Highlights
 
-- 🧮 **72 retention models** — 8 basic functions × {uni·bi·tri‑modal} × {original·Brunswick·PDI}
+- 🧮 **108 retention models** — 12 basic functions × {uni·bi·tri‑modal} × {original·Brunswick·PDI}
 - 💧 **4 conductivity models** — any capillary‑bundle model with any retention curve
 - 🎯 **Three fit objectives** — **nRMSE**, **NSE**, or Gaussian **NLL** (puts θ and K on one scale)
 - 📈 **Two uncertainty modes** — **bootstrap** CIs/bands, *or* **likelihood (NLL)** uncertainty with calibrated or user‑given σ
@@ -48,7 +48,7 @@ clean HYPROP‑style interface — all in an embedded window, no browser require
 
 ## 🌱 Retention models
 
-**8 basic functions × 3 pore‑system modes (unimodal · bimodal · trimodal) × 3 variants.**
+**12 basic functions × 3 pore‑system modes (unimodal · bimodal · trimodal) × 3 variants.**
 
 | Variant | Reference | Non‑capillary (film/adsorptive) treatment |
 |---|---|---|
@@ -57,8 +57,10 @@ clean HYPROP‑style interface — all in an embedded window, no browser require
 | **PDI**       | Peters, Durner & Iden 2024 *(VZJ)* | smoothed piecewise‑linear `S_nc`, air‑entry from `S_c` |
 
 > Basic functions: **van Genuchten** (m = 1−1/n) · **van Genuchten** (m, n free) ·
-> **Brooks–Corey** · **Kosugi** · **Fredlund–Xing** · **Brutsaert** (1966) ·
-> **Tani** (1982) · **Russo** (1988).
+> **van Genuchten (Vogel–Císlerová** air‑entry, 1988**)** · **Brooks–Corey** (1964) ·
+> **Campbell** (1974) · **Kosugi** (1996) · **Fredlund–Xing** (constrained & m‑free) ·
+> **Brutsaert** (1966) · **Tani** (1982) · **Russo** (1988) ·
+> **Dexter** double‑exponential (2008).
 > Brunswick & PDI force θ → 0 at oven dryness (pF 6.8), and use each paper's own
 > parameter notation in the UI.
 
