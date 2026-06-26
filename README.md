@@ -35,15 +35,22 @@ clean HYPROP‑style interface — all in an embedded window, no browser require
 ## ✨ Highlights
 
 - 🧮 **108 retention models** — 12 basic functions × {uni·bi·tri‑modal} × {original·Brunswick·PDI}
-- 💧 **6 conductivity models** — 4 capillary‑bundle (Mualem/Burdine/AS/CCG) + Gardner exponential & power, each usable with any retention curve
+- 💧 **6 conductivity models** — 4 capillary‑bundle (Mualem/Burdine/AS/CCG) + Gardner exponential & power; **tick several to compare** alongside the retention models
 - 🎯 **Three fit objectives** — **nRMSE**, **NSE**, or Gaussian **NLL** (puts θ and K on one scale)
 - 📈 **Two uncertainty modes** — **bootstrap** CIs/bands, *or* **likelihood (NLL)** uncertainty with calibrated or user‑given σ
 - 🌈 **Model comparison** — `Ctrl`+click models to overlay; each curve a distinct colour with its own matching 95 % band
 - 📊 **Statistical analysis panel** — RMSE · NSE · KGE · NLL per branch, AICc, σ, water content & PAW; switch between models via a dropdown
+- 📄 **Beautiful PDF report** — one‑click infographic report: dashboard KPIs, colour‑graded leaderboard, square θ(h)/K(h)/K(θ) plots, model‑comparison bar charts, and a detailed recommended‑model breakdown
+- 🔬 **Residual plots** — observed − fitted vs. suction for the θ and K branches
+- 🎚️ **Editable parameter bounds** — tighten or widen each parameter's search range right in the table
+- 🔤 **Flexible input units** — suction in pF / cm / kPa / hPa and K in cm·d⁻¹ / cm·s⁻¹ / mm·h⁻¹ / m·s⁻¹
+- 📑 **Excel sheet picker** — auto‑merges retention + conductivity sheets, with a manual sheet override
+- ⏳ **Live progress + Cancel** — a progress bar during the fit and a working cancel button
+- 💾 **Save / restore session** — download a fit (results + settings) as JSON and reopen it later
 - 🔤 **Paper‑accurate symbols** — parameter labels follow each variant's source paper (θ_cs/θ_ncs for Brunswick, K_snc, τ_s … for PDI)
 - 🖥️ **No browser, no Python needed** — embedded Qt window, one‑click installer
 - 📂 **Smart file loading** — CSV, text, or Excel (`.xlsx`/`.xls`); auto-detects the delimiter (`,`/`;`/tab), decimal mark, the right Excel sheet, and where the data table starts (skips instrument metadata)
-- 📤 **One‑click export** — fitted parameters and curves to CSV
+- 📤 **One‑click export** — fitted parameters and curves to CSV, plus the full PDF report
 
 ---
 
