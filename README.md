@@ -42,6 +42,7 @@ clean HYPROP‑style interface — all in an embedded window, no browser require
 - 📊 **Statistical analysis panel** — RMSE · NSE · KGE · NLL per branch, AICc, σ, water content & PAW; switch between models via a dropdown
 - 🔤 **Paper‑accurate symbols** — parameter labels follow each variant's source paper (θ_cs/θ_ncs for Brunswick, K_snc, τ_s … for PDI)
 - 🖥️ **No browser, no Python needed** — embedded Qt window, one‑click installer
+- 📂 **Smart file loading** — CSV, text, or Excel (`.xlsx`/`.xls`); auto-detects the delimiter (`,`/`;`/tab), decimal mark, the right Excel sheet, and where the data table starts (skips instrument metadata)
 - 📤 **One‑click export** — fitted parameters and curves to CSV
 
 ---
@@ -117,7 +118,7 @@ selection and water‑content / plant‑available‑water summaries at standard 
 
 ## 📂 Data format
 
-One combined CSV **or** two CSVs. Map columns to roles in the UI (auto‑guessed):
+Upload **CSV, text, or Excel** files — one combined file **or** separate retention/conductivity files. The reader auto-detects the delimiter (comma, semicolon, or tab), the decimal mark (e.g. European `;` + `,`), the best worksheet in an Excel workbook, and the data block even when there are metadata/preamble rows above it. Then map columns to roles in the UI (auto‑guessed):
 `pF (ret.)`, `θ`, `pF (cond.)`, `K`, and an optional `sample_id` (pick one sample
 to fit). A sample may have only SWRC or only HCC — whichever is present is fitted.
 Hover the **ⓘ** badge on any panel for an in‑app explanation.
