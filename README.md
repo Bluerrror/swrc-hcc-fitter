@@ -9,7 +9,7 @@
 A polished desktop app for **soil hydraulic property** estimation across the
 full moisture range: **108 retention models × 6 conductivity models**, three
 fit objectives, two kinds of uncertainty, colour‑coded model comparison, and a
-clean HYPROP‑style interface — all in an embedded window, no browser required.
+clean lab‑style interface — all in an embedded window, no browser required.
 
 <p>
 <a href="https://PTF.bluerror.com/"><img src="https://img.shields.io/badge/▶_use_it_online-no_install-2e8b57?style=for-the-badge&logo=firefoxbrowser&logoColor=white" alt="Use it online"></a>
@@ -43,6 +43,7 @@ clean HYPROP‑style interface — all in an embedded window, no browser require
 - 📄 **Beautiful PDF report** — one‑click infographic report: dashboard KPIs, colour‑graded leaderboard, square θ(h)/K(h)/K(θ) plots, model‑comparison bar charts, and a detailed recommended‑model breakdown
 - 🔬 **Residual plots** — observed − fitted vs. suction for the θ and K branches
 - 🎚️ **Editable parameter bounds** — tighten or widen each parameter's search range right in the table
+- 🗂️ **Built‑in example databases** — no data of your own? Load a real measured soil straight from **Hohenbrink et al. (2023)** (569 soils), **UNSODA 2.0** (329) or **EU‑HYDI** (2243) via *“No data? Try a database”*, or **[download all of them as an Excel workbook](https://github.com/Bluerrror/swrc-hcc-fitter/releases/latest/download/soil_hydraulic_databases.xlsx)** (SWRC + HCC sheets with `pF` and `Sample_ID`)
 - 🔤 **Flexible input units** — suction in pF / cm / kPa / hPa and K in cm·d⁻¹ / cm·s⁻¹ / mm·h⁻¹ / m·s⁻¹
 - 📑 **Excel sheet picker** — auto‑merges retention + conductivity sheets, with a manual sheet override
 - ⏳ **Live progress + Cancel** — a progress bar during the fit and a working cancel button
@@ -131,6 +132,20 @@ to fit). A sample may have only SWRC or only HCC — whichever is present is fit
 Hover the **ⓘ** badge on any panel for an in‑app explanation.
 
 ---
+
+## 📝 Citation
+
+If you use SWRC/HCC Fitter in your work, please cite:
+
+> Shojaeezadeh, S.A. *SWRC/HCC Fitter tool for fitting soil water retention and hydraulic conductivity curves over the full moisture range* (under review).
+
+## 🗂️ Example databases
+
+The app ships with three public soil hydraulic databases you can load without any file of your own (**No data? Try a database**), and the same data is available as a **[downloadable Excel workbook](https://github.com/Bluerrror/swrc-hcc-fitter/releases/latest/download/soil_hydraulic_databases.xlsx)** — one `*_SWRC` and one `*_HCC` sheet per source, each with `Sample_ID`, `pF`, and the measured values:
+
+- **Hohenbrink et al. (2023)** — German database, 569 soils (evaporation method + dewpoint + saturated *K*).
+- **UNSODA 2.0** (Leij et al., 1996) — global, 329 soils; independent cross‑database test set.
+- **EU‑HYDI** (Weynants et al., 2013) — European Hydropedological Data Inventory, 2243 soils; independent test set.
 
 ## 📜 References
 
