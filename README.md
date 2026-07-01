@@ -144,8 +144,14 @@ If you use SWRC/HCC Fitter in your work, please cite:
 The app ships with three public soil hydraulic databases you can load without any file of your own (**No data? Try a database**), and the same data is available as a **[downloadable Excel workbook](https://github.com/Bluerrror/swrc-hcc-fitter/releases/latest/download/soil_hydraulic_databases.xlsx)** — one `*_SWRC` and one `*_HCC` sheet per source, each with `Sample_ID`, `pF`, and the measured values:
 
 - **Hohenbrink et al. (2023)** — German database, 569 soils (evaporation method + dewpoint + saturated *K*).
-- **UNSODA 2.0** (Leij et al., 1996) — global, 329 soils; independent cross‑database test set.
+- **UNSODA 2.0** (Nemes et al., 2001; Leij et al., 1996) — global, 329 soils; independent cross‑database test set.
 - **EU‑HYDI** (Weynants et al., 2013) — European Hydropedological Data Inventory, 2243 soils; independent test set.
+
+**Please also cite the database(s) you use:**
+
+- Hohenbrink, T., Jackisch, C., Durner, W., Germer, K., Iden, S., Kreiselmeier, J., et al. (2023). Soil water retention and hydraulic conductivity measured in a wide saturation range. *Earth System Science Data*, 15, 4417–4432. <https://doi.org/10.5194/essd-15-4417-2023>
+- Nemes, A., Schaap, M. G., Leij, F. J., & Wösten, J. H. M. (2001). Description of the unsaturated soil hydraulic database UNSODA version 2.0. *Journal of Hydrology*, 251(3–4), 151–162. <https://doi.org/10.1016/S0022-1694(01)00465-6> — original report: Leij, F. J., Alves, W. J., van Genuchten, M. Th., & Williams, J. R. (1996). *The UNSODA Unsaturated Soil Hydraulic Database*. EPA/600/R‑96/095.
+- Weynants, M., Montanarella, L., Tóth, G., et al. (2013). *European Hydropedological Data Inventory (EU‑HYDI)*. Publications Office of the European Union, Luxembourg. <https://doi.org/10.2788/5936>
 
 ## 📜 References
 
