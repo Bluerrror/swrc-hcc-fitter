@@ -7,7 +7,7 @@
 ### Fit soil water‑retention & hydraulic‑conductivity curves — beautifully.
 
 A polished desktop app for **soil hydraulic property** estimation across the
-full moisture range: **108 retention models × 6 conductivity models**, three
+full moisture range: **125 retention models × 6 conductivity models**, three
 fit objectives, two kinds of uncertainty, colour‑coded model comparison, and a
 clean lab‑style interface — all in an embedded window, no browser required.
 
@@ -21,7 +21,7 @@ clean lab‑style interface — all in an embedded window, no browser required.
 
 <b>📖 Full user manual with worked examples: <a href="https://bluerror.com/manual.html">bluerror.com/manual.html</a></b>
 
-<img src="https://img.shields.io/badge/retention_models-108-2e86c1">
+<img src="https://img.shields.io/badge/retention_models-125-2e86c1">
 <img src="https://img.shields.io/badge/conductivity_models-6-2e86c1">
 <img src="https://img.shields.io/badge/objectives-nRMSE_·_NSE_·_NLL-8e44ad">
 <img src="https://img.shields.io/badge/platform-Windows%20x64-555">
@@ -34,7 +34,7 @@ clean lab‑style interface — all in an embedded window, no browser required.
 
 ## ✨ Highlights
 
-- 🧮 **108 retention models** — 12 basic functions × {uni·bi·tri‑modal} × {original·Brunswick·PDI}
+- 🧮 **125 retention models** — 8 basic functions × {uni·bi·tri‑modal} × 5 full‑range variants (original · Brunswick · PDI · FXW · Fayer–Simmons), plus 5 self‑contained full‑range functions (Rossi–Nimmo, Webb, Groenevelt–Grant, Lu, Zhang)
 - 💧 **6 conductivity models** — 4 capillary‑bundle (Mualem/Burdine/AS/CCG) + Gardner exponential & power; **tick several to compare** alongside the retention models
 - 🎯 **Three fit objectives** — **nRMSE**, **NSE**, or Gaussian **NLL** (puts θ and K on one scale)
 - 📈 **Two uncertainty modes** — **bootstrap** CIs/bands, *or* **likelihood (NLL)** uncertainty with calibrated or user‑given σ
@@ -57,21 +57,24 @@ clean lab‑style interface — all in an embedded window, no browser required.
 
 ## 🌱 Retention models
 
-**12 basic functions × 3 pore‑system modes (unimodal · bimodal · trimodal) × 3 variants.**
+**8 basic functions × 3 pore‑system modes (unimodal · bimodal · trimodal) × 5 full‑range variants = 120, plus 5 self‑contained full‑range functions = 125 retention models.**
 
-| Variant | Reference | Non‑capillary (film/adsorptive) treatment |
+Each basic capillary function can be wrapped by a **full‑range variant** that adds non‑capillary (adsorptive/film) water so θ → 0 at oven dryness (pF 6.8):
+
+| Variant | Reference | Non‑capillary / dry‑end treatment |
 |---|---|---|
-| **original**  | classic capillary | none |
+| **original**  | classic capillary | none (flattens to θr) |
 | **Brunswick** | Weber et al. 2019 *(WRR)* | integral‑derived non‑capillary saturation + film conductivity |
 | **PDI**       | Peters, Durner & Iden 2024 *(VZJ)* | smoothed piecewise‑linear `S_nc`, air‑entry from `S_c` |
+| **FXW**       | Rudiyanto et al. 2020 *(J. Hydrol.)* | Fredlund–Xing oven‑dryness correction `θ = θs·C(h)·Se` |
+| **Fayer–Simmons** | Fayer & Simmons 1995 *(WRR)* | Campbell–Shiozawa log‑linear adsorption replaces θr |
 
 > Basic functions: **van Genuchten** (m = 1−1/n) · **van Genuchten** (m, n free) ·
 > **van Genuchten (Vogel–Císlerová** air‑entry, 1988**)** · **Brooks–Corey** (1964) ·
-> **Campbell** (1974) · **Kosugi** (1996) · **Fredlund–Xing** (constrained & m‑free) ·
-> **Brutsaert** (1966) · **Tani** (1982) · **Russo** (1988) ·
-> **Dexter** double‑exponential (2008).
-> Brunswick & PDI force θ → 0 at oven dryness (pF 6.8), and use each paper's own
-> parameter notation in the UI.
+> **Campbell** (1974) · **Kosugi** (1996) · **Fredlund–Xing** (constrained & m‑free).
+
+**Self‑contained full‑range functions** (native θ(h) reaching 0 at oven dryness; offered as standalone unimodal models, not crossed with the correction variants):
+**Rossi–Nimmo** (1994) · **Webb** (2000) · **Groenevelt–Grant** (2004) · **Lu** (2016) · **Zhang** (2011).
 
 ## 💧 Conductivity models
 
@@ -155,9 +158,22 @@ The app ships with three public soil hydraulic databases you can load without an
 
 ## 📜 References
 
-- **Weber et al. (2019)**, *Water Resources Research* — modular (Brunswick) framework.
-- **Peters, Durner & Iden (2024)**, *Vadose Zone Journal* — the PDI model system.
-- **Peters, Iden & Durner (2023)**, *HESS* — comparison of capillary‑bundle conductivity models.
+*Full‑range variant frameworks*
+- **Weber, Durner, Streck & Diamantopoulos (2019)**, *WRR* 55:4994 — modular (Brunswick) framework. <https://doi.org/10.1029/2018WR024584>
+- **Peters, Durner & Iden (2024)**, *VZJ* 23:e20338 — the PDI model system. <https://doi.org/10.1002/vzj2.20338>
+- **Rudiyanto et al. (2020)**, *J. Hydrol.* 588:125041 — FXW full‑range Fredlund–Xing + Wang conductivity. <https://doi.org/10.1016/j.jhydrol.2020.125041>
+- **Wang, Jin & Deng (2018)**, *WRR* 54:6860 — complete‑range hydraulic conductivity. <https://doi.org/10.1029/2018WR023037>
+- **Fayer & Simmons (1995)**, *WRR* 31:1233 — adsorption (Campbell–Shiozawa) modification. <https://doi.org/10.1029/95WR00173>
+
+*Self‑contained full‑range functions*
+- **Rossi & Nimmo (1994)**, *WRR* 30:701 — saturation to oven dryness. <https://doi.org/10.1029/93WR03238>
+- **Webb (2000)**, *WRR* 36:1425 — log‑linear dry‑region extension. <https://doi.org/10.1029/2000WR900057>
+- **Groenevelt & Grant (2004)**, *Eur. J. Soil Sci.* 55:479 — residual‑free retention. <https://doi.org/10.1111/j.1365-2389.2004.00617.x>
+- **Lu (2016)**, *JGGE* 142:04016051 — generalized adsorption + capillarity. <https://doi.org/10.1061/(ASCE)GT.1943-5606.0001524>
+- **Zhang (2011)**, *VZJ* 10:1299 — oven‑dry to saturation retention & permeability. <https://doi.org/10.2136/vzj2011.0019>
+
+*Conductivity*
+- **Peters, Iden & Durner (2023)**, *HESS* 27:4579 — comparison of capillary‑bundle conductivity models. <https://doi.org/10.5194/hess-27-4579-2023>
 
 ## 🔗 Links
 
