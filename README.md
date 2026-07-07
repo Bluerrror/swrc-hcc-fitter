@@ -41,7 +41,11 @@ clean lab‑style interface — all in an embedded window, no browser required.
 - 🌈 **Model comparison** — `Ctrl`+click models to overlay; each curve a distinct colour with its own matching 95 % band
 - 📊 **Statistical analysis panel** — RMSE · NSE · KGE · NLL per branch, AICc, σ, water content & PAW; switch between models via a dropdown
 - 📄 **Beautiful PDF report** — one‑click infographic report: dashboard KPIs, colour‑graded leaderboard, square θ(h)/K(h)/K(θ) plots, model‑comparison bar charts, and a detailed recommended‑model breakdown
-- 🔬 **Residual plots** — observed − fitted vs. suction for the θ and K branches
+- 🌫️ **Isothermal vapor conductivity** — optional dry‑range K floor (Saito, Šimůnek & Mohanty 2006), parameter‑free physics from the retention curve + temperature
+- ⚠️ **Extrapolation & identifiability flags** — plots grey the suction range with no data, and parameters pinned at a search bound are flagged as unconstrained
+- 🔬 **Residual plots + normality diagnostics** — observed − fitted vs. suction, plus Shapiro–Wilk / skew / kurtosis on the residuals (tests the NLL Gaussian assumption)
+- 📐 **Uncertainty on derived quantities** — bootstrap CIs on water content, PAW and AICc, not just parameters and curves
+- 📱 **Responsive** — the web app adapts to phone/tablet screens
 - 🎚️ **Editable parameter bounds** — tighten or widen each parameter's search range right in the table
 - 🗂️ **Built‑in example databases** — no data of your own? Load a real measured soil straight from **Hohenbrink et al. (2023)** (569 soils), **UNSODA 2.0** (329) or **EU‑HYDI** (2243) via *“No data? Try a database”*, or **[download all of them as an Excel workbook](https://github.com/Bluerrror/swrc-hcc-fitter/releases/latest/download/soil_hydraulic_databases.xlsx)** (SWRC + HCC sheets with `pF` and `Sample_ID`)
 - 🔤 **Flexible input units** — suction in pF / cm / kPa / hPa and K in cm·d⁻¹ / cm·s⁻¹ / mm·h⁻¹ / m·s⁻¹
