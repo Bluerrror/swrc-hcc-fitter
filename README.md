@@ -43,6 +43,7 @@ clean lab‑style interface — all in an embedded window, no browser required.
 - 📄 **Beautiful PDF report** — one‑click infographic report: dashboard KPIs, colour‑graded leaderboard, square θ(h)/K(h)/K(θ) plots, model‑comparison bar charts, and a detailed recommended‑model breakdown
 - 🌫️ **Isothermal vapor conductivity** — optional dry‑range K floor (Saito, Šimůnek & Mohanty 2006), parameter‑free physics from the retention curve + temperature
 - ⚠️ **Extrapolation & identifiability flags** — plots grey the suction range with no data, and parameters pinned at a search bound are flagged as unconstrained
+- 🏷️ **Soil‑water zones on every plot** — gravitational / plant‑available / unavailable (hygroscopic) water areas plus the characteristic suctions (saturation, field capacity, wilting point, PWP, air dry, oven dry at pF 6.8); on K(θ) the same suctions are mapped onto the water‑content axis. Labels scale as you zoom in.
 - 🔬 **Residual plots + normality diagnostics** — observed − fitted vs. suction, plus Shapiro–Wilk / skew / kurtosis on the residuals (tests the NLL Gaussian assumption)
 - 📐 **Uncertainty on derived quantities** — bootstrap CIs on water content, PAW and AICc, not just parameters and curves
 - 📱 **Responsive** — the web app adapts to phone/tablet screens
