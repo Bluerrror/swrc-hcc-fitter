@@ -4,59 +4,90 @@
 
 # SWRC/HCC Fitter
 
-### Fit soil water‑retention & hydraulic‑conductivity curves — beautifully.
+### Fit soil water‑retention & hydraulic‑conductivity curves — beautifully, and fast.
 
-A polished desktop app for **soil hydraulic property** estimation across the
-full moisture range: **96 retention models × 6 conductivity models**, three
-fit objectives, two kinds of uncertainty, colour‑coded model comparison, and a
-clean lab‑style interface — all in an embedded window, no browser required.
+A native application for **soil hydraulic property** estimation across the full
+moisture range: **96 retention models × 6 conductivity models**, three fit
+objectives, two kinds of uncertainty, model ranking with Akaike weights, and a
+clean lab‑style interface — on **Windows and Linux**.
 
 <p>
 <a href="https://PTF.bluerror.com/"><img src="https://img.shields.io/badge/▶_use_it_online-no_install-2e8b57?style=for-the-badge&logo=firefoxbrowser&logoColor=white" alt="Use it online"></a>
 &nbsp;
-<a href="../../releases/latest"><img src="https://img.shields.io/badge/download-installer-1f4e79?style=for-the-badge&logo=windows" alt="Download"></a>
+<a href="../../releases/latest"><img src="https://img.shields.io/badge/download-Windows_·_Linux-1f4e79?style=for-the-badge&logo=github" alt="Download"></a>
 </p>
 
-<b>▶ Try it right now in your browser — no install: <a href="https://PTF.bluerror.com/">PTF.bluerror.com</a></b>
+<b>▶ Try it in your browser — no install: <a href="https://PTF.bluerror.com/">PTF.bluerror.com</a></b>
 
-<b>📖 Full user manual with worked examples: <a href="https://bluerror.com/manual.html">bluerror.com/manual.html</a></b>
+<b>📖 User manual with worked examples: <a href="https://bluerror.com/manual.html">bluerror.com/manual.html</a></b>
 
 <img src="https://img.shields.io/badge/retention_models-96-2e86c1">
 <img src="https://img.shields.io/badge/conductivity_models-6-2e86c1">
 <img src="https://img.shields.io/badge/objectives-nRMSE_·_NSE_·_NLL-8e44ad">
-<img src="https://img.shields.io/badge/platform-Windows%20x64-555">
-<img src="https://img.shields.io/badge/engine-NumPy%20%2B%20SciPy-1e8449">
+<img src="https://img.shields.io/badge/platform-Windows_·_Linux_x64-555">
+<img src="https://img.shields.io/badge/engine-Fortran_(OpenMP)_+_C%23-6f42c1">
 <img src="https://img.shields.io/badge/license-MIT-orange">
 
 </div>
 
 ---
 
+## ⚡ What's new in 3.0
+
+Version 3 replaces the Python/Dash engine with a **native Fortran kernel (OpenMP)** driven by a
+**C# (.NET 8)** engine. Same interface, same results format — much faster, and it now runs on Linux.
+
+| Task (same data and settings) | 1.x (Python) | 3.0 (native) |
+|---|---|---|
+| 4 models, no bootstrap | 8.3 s | **0.12 s** |
+| 4 models + bootstrap | 36.6 s (10 refits) | **1.7 s (50 refits)** |
+| Batch fit, 329 soils | minutes | **≈ 2 s** |
+
+Every model and every bootstrap refit runs in parallel; the differential‑evolution population is
+evaluated with OpenMP. Results are deterministic — identical on Windows and Linux.
+
+---
+
 ## ✨ Highlights
 
-- 🧮 **96 retention models** — 8 basic functions × {uni·bi·tri‑modal} × 4 full‑range variants (original · Brunswick · PDI · FXW)
-- 💧 **6 conductivity models** — 4 capillary‑bundle (Mualem/Burdine/AS/CCG) + Gardner exponential & power; **tick several to compare** alongside the retention models
+- 🧮 **96 retention models** — 8 basic functions × {uni·bi·tri‑modal} × 4 full‑range variants (original · Brunswick · PDI · Wang)
+- 💧 **6 conductivity models** — Mualem / Burdine / Alexander–Skaggs / Childs–Collis‑George + Gardner exponential & power; tick several to compare
+- 🧾 **Equations on hover** — point at any model in the matrix to see its θ(h), K(h) and conductivity model in rendered LaTeX
 - 🎯 **Three fit objectives** — **nRMSE**, **NSE**, or Gaussian **NLL** (puts θ and K on one scale)
-- 📈 **Two uncertainty modes** — **bootstrap** CIs/bands, *or* **likelihood (NLL)** uncertainty with calibrated or user‑given σ
-- 🌈 **Model comparison** — `Ctrl`+click models to overlay; each curve a distinct colour with its own matching 95 % band
-- 📊 **Statistical analysis panel** — RMSE · NSE · KGE · NLL per branch, AICc, σ, water content & PAW; switch between models via a dropdown
-- 📄 **Beautiful PDF report** — one‑click infographic report: dashboard KPIs, colour‑graded leaderboard, square θ(h)/K(h)/K(θ) plots, model‑comparison bar charts, and a detailed recommended‑model breakdown
-- 🌫️ **Isothermal vapor conductivity** — optional dry‑range K floor (Saito, Šimůnek & Mohanty 2006), parameter‑free physics from the retention curve + temperature
-- ⚠️ **Extrapolation & identifiability flags** — plots grey the suction range with no data, and parameters pinned at a search bound are flagged as unconstrained
-- 🏷️ **Soil‑water zones on every plot** — gravitational / plant‑available / unavailable (hygroscopic) water areas plus the characteristic suctions (saturation, field capacity, wilting point, PWP, air dry, oven dry at pF 6.8); on K(θ) the same suctions are mapped onto the water‑content axis. Labels scale as you zoom in.
-- 🔬 **Residual plots + normality diagnostics** — observed − fitted vs. suction, plus Shapiro–Wilk / skew / kurtosis on the residuals (tests the NLL Gaussian assumption)
-- 📐 **Uncertainty on derived quantities** — bootstrap CIs on water content, PAW and AICc, not just parameters and curves
-- 📱 **Responsive** — the web app adapts to phone/tablet screens
-- 🎚️ **Editable parameter bounds** — tighten or widen each parameter's search range right in the table
-- 🗂️ **Built‑in example databases** — no data of your own? Load a real measured soil straight from **Hohenbrink et al. (2023)** (569 soils), **UNSODA 2.0** (329) or **EU‑HYDI** (2243) via *“No data? Try a database”*, or **[download all of them as an Excel workbook](https://github.com/Bluerrror/swrc-hcc-fitter/releases/latest/download/soil_hydraulic_databases.xlsx)** (SWRC + HCC sheets with `pF` and `Sample_ID`)
-- 🔤 **Flexible input units** — suction in pF / cm / kPa / hPa and K in cm·d⁻¹ / cm·s⁻¹ / mm·h⁻¹ / m·s⁻¹
-- 📑 **Excel sheet picker** — auto‑merges retention + conductivity sheets, with a manual sheet override
-- ⏳ **Live progress + Cancel** — a progress bar during the fit and a working cancel button
-- 💾 **Save / restore session** — download a fit (results + settings) as JSON and reopen it later
-- 🔤 **Paper‑accurate symbols** — parameter labels follow each variant's source paper (θ_cs/θ_ncs for Brunswick, K_snc, τ_s … for PDI)
-- 🖥️ **No browser, no Python needed** — embedded Qt window, one‑click installer
-- 📂 **Smart file loading** — CSV, text, or Excel (`.xlsx`/`.xls`); auto-detects the delimiter (`,`/`;`/tab), decimal mark, the right Excel sheet, and where the data table starts (skips instrument metadata)
-- 📤 **One‑click export** — fitted parameters and curves to CSV, plus the full PDF report
+- 📈 **Two uncertainty modes** — **bootstrap** CIs / confidence + prediction bands, *or* **likelihood (NLL)** uncertainty with calibrated or user‑given σ
+- 🏆 **Model ranking** — NSE (colour‑graded), **ΔAICc and Akaike weights** for every compared model; parameters stuck at a search bound are flagged
+- 🌈 **Model comparison** — `Ctrl`+click models to overlay; each curve has its own colour and matching 95 % band
+- 📊 **Statistical analysis** — RMSE · NSE · KGE · NLL per branch, AICc, σ, water content & plant‑available water with CIs, residual normality (Shapiro–Wilk)
+- 📄 **PDF report** — dashboard KPIs, colour‑graded leaderboard, θ(h)/K(h)/K(θ) plots, comparison bars, recommended‑model breakdown
+- 🌫️ **Isothermal vapor conductivity** — optional dry‑range K floor (Saito, Šimůnek & Mohanty 2006)
+- 🏷️ **Soil‑water zones on every plot** — gravitational / plant‑available / hygroscopic water and the characteristic suctions
+- 🔬 **Capacity C(h), pore‑size distribution and residual plots**
+- 🗂️ **Built‑in example databases** — no data of your own? Load a measured soil from **Hohenbrink et al. (2023)** (569 soils), **UNSODA 2.0** (329) or **EU‑HYDI** (2243) via *“No data? Try a database”*
+- 📂 **Smart loading** — CSV, text or Excel; auto‑detects delimiter, decimal mark, sheet and table start; **drag & drop** anywhere; a data check warns about wrong units
+- 🔤 **Flexible input units** — suction in pF / cm / kPa / hPa, K in cm·d⁻¹ / cm·s⁻¹ / mm·h⁻¹ / m·s⁻¹
+- 🎓 **Learner mode** — USDA texture presets and live curve preview
+- ⏱️ **Fast & cancellable** — live progress with time remaining; `Esc` cancels
+- ⌨️ **Shortcuts** — `Ctrl+Enter` fit · `Ctrl+O` open · `Ctrl+S` save session · `Ctrl+P` report
+- 💾 **Sessions** — save/restore a fit as JSON (sessions from 1.x open too); your settings are remembered
+- 🖥️ **One‑window layout** — everything fits on one screen, no scrolling
+
+---
+
+## 🚀 Install — one file per platform
+
+Download from the **[latest release](../../releases/latest)**:
+
+| Platform | File | How |
+|---|---|---|
+| **Windows** 10/11 (x64) | `SWRC-HCC-Fitter-3.0.0-setup.exe` | Double‑click and follow the wizard. Everything is included — nothing is downloaded, no Python or .NET needed. Upgrades an existing 1.x installation. |
+| **Linux** (x64) | `SWRC-HCC-Fitter-3.0.0-linux-x64.run` | `chmod +x SWRC-HCC-Fitter-3.0.0-linux-x64.run && ./SWRC-HCC-Fitter-3.0.0-linux-x64.run` |
+
+**Linux notes**
+- Run the installer as a normal user to install into `~/.local`, or with `sudo` for a system‑wide install in `/opt`.
+- Start it from your application menu or with `swrc-hcc-fitter` — the interface opens in your browser.
+- The kernel uses the system libraries `libgfortran5` and `libgomp1` (installed automatically with `sudo`).
+- **Host the web version** yourself: `sudo systemctl enable --now swrc-hcc-fitter` serves it on port 8050 (put nginx/Caddy with TLS in front).
+- Remove with `./SWRC-HCC-Fitter-3.0.0-linux-x64.run --uninstall`.
 
 ---
 
@@ -64,117 +95,79 @@ clean lab‑style interface — all in an embedded window, no browser required.
 
 **8 basic functions × 3 pore‑system modes (unimodal · bimodal · trimodal) × 4 full‑range variants = 96 retention models.**
 
-Each basic capillary function can be wrapped by a **full‑range variant** that adds non‑capillary (adsorptive/film) water so θ → 0 at oven dryness (pF 6.8):
-
 | Variant | Reference | Non‑capillary / dry‑end treatment |
 |---|---|---|
-| **original**  | classic capillary | none (flattens to θr) |
+| **original**  | classic capillary | none (flattens to θr); Fredlund–Xing includes its C(ψ) correction |
 | **Brunswick** | Weber et al. 2019 *(WRR)* | integral‑derived non‑capillary saturation + film conductivity |
-| **PDI**       | Peters, Durner & Iden 2024 *(VZJ)* | smoothed piecewise‑linear `S_nc`, air‑entry from `S_c` |
-| **FXW**       | Rudiyanto et al. 2020 *(J. Hydrol.)* | Fredlund–Xing oven‑dryness correction `θ = θs·C(h)·Se` |
+| **PDI**       | Peters, Durner & Iden 2024 *(VZJ)* | smoothed piecewise‑linear `S_nc`, air‑entry from `S_c`, 6 cm max‑pore‑size cutoff |
+| **Wang**      | Wang, Ma & Vereecken 2025 *(WRR)* | `θ = C(h)[(θs−θr)Γ + θr]`; nc > 1 gives bimodal curves; K matched at h_a = 6 cm + film term |
 
 > Basic functions: **van Genuchten** (m = 1−1/n) · **van Genuchten** (m, n free) ·
 > **van Genuchten (Vogel–Císlerová** air‑entry, 1988**)** · **Brooks–Corey** (1964) ·
 > **Campbell** (1974) · **Kosugi** (1996) · **Fredlund–Xing** (constrained & m‑free).
 
-## 💧 Conductivity models
+The formulations were checked against the source papers. Defaults follow the papers; the
+*Model options* panel can apply the 6 cm pore cutoff to every variant (this reproduces the 1.x
+results) and switch the Brunswick film base to h₀/hₐ (Peters & Iden 2021).
 
-Capillary‑bundle models compared in **Peters, Iden & Durner (2023, HESS)** — each
-combinable with **every** retention curve:
+## 💧 Conductivity models
 
 | Model | Reference | Form |
 |---|---|---|
-| **Mualem** ⭐ | Mualem 1976 | `q=1, r=2` *(recommended)* |
-| **Burdine** | Burdine 1953 | `q=2, r=1` |
-| **Alexander–Skaggs** | Alexander & Skaggs 1986 | `q=1, r=1` |
-| **Childs–Collis‑George** | Childs & Collis‑George 1950 | moment integral |
+| **Mualem** ⭐ | Mualem 1976 | `q=1, r=2`, τ default 0.5 *(recommended)* |
+| **Burdine** | Burdine 1953 | `q=2, r=1`, τ default 2 |
+| **Alexander–Skaggs** | Alexander & Skaggs 1986 | `q=1, r=1`, τ default 1 |
+| **Childs–Collis‑George** | Childs & Collis‑George 1950 | moment integral, τ default 4/3 |
 | **Gardner (exponential)** | Gardner 1958 | `K = Ks·exp(−kg·h)` |
 | **Gardner (power)** | Gardner 1958 | `K = Ks/[1+(h/hk)^pk]` |
+
+τ defaults follow Peters, Iden & Durner (2023, *HESS*).
 
 ---
 
 ## 🎯 Fit objective & uncertainty
 
-Choose the objective that scores the θ(h) and K(h) branches together:
-
 | Objective | What it does | Uncertainty |
 |---|---|---|
 | **nRMSE** | range‑normalised RMSE, so θ and K weigh equally | bootstrap |
 | **NSE**   | variance‑normalised (Nash–Sutcliffe) | bootstrap |
-| **NLL**   | Gaussian negative log‑likelihood; jointly calibrates the mean (SSE) and noise **σ** | likelihood band |
+| **NLL**   | Gaussian negative log‑likelihood; jointly calibrates the mean and noise **σ** | likelihood band |
 
-- **Bootstrap** (nRMSE/NSE): resamples the data and refits to get 2.5–97.5 %
-  parameter intervals and shaded curve bands. Set the number of refits (0 = off).
-- **Likelihood / NLL**: replaces bootstrap with a Gauss–Newton covariance and
-  Monte‑Carlo curve bands. σ can be **calibrated** (σ̂ = RMSE, the Gaussian MLE)
-  or **fixed** to your own σθ/σK to control the θ‑vs‑K weighting. Every overlaid
-  model gets its **own colour‑matched band**.
-
-Reported metrics per branch: **RMSE · NSE · KGE · NLL**, plus **AICc** for model
+Reported per branch: **RMSE · NSE · KGE · NLL**, plus **AICc / ΔAICc / Akaike weight** for model
 selection and water‑content / plant‑available‑water summaries at standard suctions.
-
----
-
-## 🚀 Install
-
-1. **[Download `SWRC-HCC-Fitter-setup.exe`](../../releases/latest)** and run it
-   *(published by **PEN‑PTF**)*.
-2. Follow the wizard. Click **Yes** when Windows offers to install the
-   **Microsoft Visual C++ runtime** (one‑time, required by Qt).
-3. The installer ships **uv** + the VC++ runtime, then uv fetches a private
-   Python 3.12 + scientific stack (Dash, Plotly, NumPy, pandas, SciPy, PySide6).
-   ⏳ *Needs internet on first install — a couple of minutes; instant & offline after.*
-4. Launch **SWRC‑HCC Fitter** from the Start Menu or Desktop.
 
 ---
 
 ## 📂 Data format
 
-Upload **CSV, text, or Excel** files — one combined file **or** separate retention/conductivity files. The reader auto-detects the delimiter (comma, semicolon, or tab), the decimal mark (e.g. European `;` + `,`), the best worksheet in an Excel workbook, and the data block even when there are metadata/preamble rows above it. Then map columns to roles in the UI (auto‑guessed):
-`pF (ret.)`, `θ`, `pF (cond.)`, `K`, and an optional `sample_id` (pick one sample
-to fit). A sample may have only SWRC or only HCC — whichever is present is fitted.
-Hover the **ⓘ** badge on any panel for an in‑app explanation.
+CSV, text or Excel — one combined file **or** separate retention/conductivity files. Columns are
+auto‑mapped (`pF`, `θ`, `pF` for K, `K`, optional `sample_id`) and can be changed in the toolbar.
+A sample may have only SWRC or only HCC data. Hover any **ⓘ** for in‑app help.
 
 ---
 
 ## 📝 Citation
 
-If you use SWRC/HCC Fitter in your work, please cite:
-
 > Shojaeezadeh, S.A. *SWRC/HCC Fitter tool for fitting soil water retention and hydraulic conductivity curves over the full moisture range* (under review).
 
-## 🗂️ Example databases
-
-The app ships with three public soil hydraulic databases you can load without any file of your own (**No data? Try a database**), and the same data is available as a **[downloadable Excel workbook](https://github.com/Bluerrror/swrc-hcc-fitter/releases/latest/download/soil_hydraulic_databases.xlsx)** — one `*_SWRC` and one `*_HCC` sheet per source, each with `Sample_ID`, `pF`, and the measured values:
-
-- **Hohenbrink et al. (2023)** — German database, 569 soils (evaporation method + dewpoint + saturated *K*).
-- **UNSODA 2.0** (Nemes et al., 2001; Leij et al., 1996) — global, 329 soils; independent cross‑database test set.
-- **EU‑HYDI** (Weynants et al., 2013) — European Hydropedological Data Inventory, 2243 soils; independent test set.
-
-**Please also cite the database(s) you use:**
+**If you use a built‑in example database, please also cite it:**
 
 - Hohenbrink, T., Jackisch, C., Durner, W., Germer, K., Iden, S., Kreiselmeier, J., et al. (2023). Soil water retention and hydraulic conductivity measured in a wide saturation range. *Earth System Science Data*, 15, 4417–4432. <https://doi.org/10.5194/essd-15-4417-2023>
-- Nemes, A., Schaap, M. G., Leij, F. J., & Wösten, J. H. M. (2001). Description of the unsaturated soil hydraulic database UNSODA version 2.0. *Journal of Hydrology*, 251(3–4), 151–162. <https://doi.org/10.1016/S0022-1694(01)00465-6> — original report: Leij, F. J., Alves, W. J., van Genuchten, M. Th., & Williams, J. R. (1996). *The UNSODA Unsaturated Soil Hydraulic Database*. EPA/600/R‑96/095.
-- Weynants, M., Montanarella, L., Tóth, G., et al. (2013). *European Hydropedological Data Inventory (EU‑HYDI)*. Publications Office of the European Union, Luxembourg. <https://doi.org/10.2788/5936>
+- Nemes, A., Schaap, M. G., Leij, F. J., & Wösten, J. H. M. (2001). Description of the unsaturated soil hydraulic database UNSODA version 2.0. *Journal of Hydrology*, 251(3–4), 151–162. <https://doi.org/10.1016/S0022-1694(01)00465-6>
+- Weynants, M., Montanarella, L., Tóth, G., et al. (2013). *European Hydropedological Data Inventory (EU‑HYDI)*. Publications Office of the European Union. <https://doi.org/10.2788/5936>
 
 ## 📜 References
 
-*Full‑range variant frameworks*
-- **Weber, Durner, Streck & Diamantopoulos (2019)**, *WRR* 55:4994 — modular (Brunswick) framework. <https://doi.org/10.1029/2018WR024584>
+- **Weber, Durner, Streck & Diamantopoulos (2019)**, *WRR* 55:4994 — Brunswick framework. <https://doi.org/10.1029/2018WR024584>
+- **Peters & Iden (2021)** comment and **Weber et al. (2025)** reply, *WRR* — Brunswick film conductivity.
 - **Peters, Durner & Iden (2024)**, *VZJ* 23:e20338 — the PDI model system. <https://doi.org/10.1002/vzj2.20338>
-- **Rudiyanto et al. (2020)**, *J. Hydrol.* 588:125041 — FXW full‑range Fredlund–Xing + Wang conductivity. <https://doi.org/10.1016/j.jhydrol.2020.125041>
-- **Wang, Jin & Deng (2018)**, *WRR* 54:6860 — complete‑range hydraulic conductivity. <https://doi.org/10.1029/2018WR023037>
-
-*Conductivity*
-- **Peters, Iden & Durner (2023)**, *HESS* 27:4579 — comparison of capillary‑bundle conductivity models. <https://doi.org/10.5194/hess-27-4579-2023>
+- **Wang, Ma & Vereecken (2025)**, *WRR* — generalized framework for unimodal and bimodal soil hydraulic properties.
+- **Peters, Iden & Durner (2023)**, *HESS* 27:4579 — capillary‑bundle conductivity models. <https://doi.org/10.5194/hess-27-4579-2023>
+- **Saito, Šimůnek & Mohanty (2006)**, *VZJ* — isothermal vapor conductivity.
 
 ## 🔗 Links
 
 - 👤 **GitHub — [Bluerrror](https://github.com/Bluerrror)**
-- ⚙️ **Forward‑model engine — [pyspsh](https://github.com/Bluerrror/pyspsh)**
 - 🎓 **[Soil Science Section, University of Kassel](https://www.uni-kassel.de/fb11agrar/en/fachgebiete-einrichtungen/bodenkunde/home.html)**
-
-Built on the **pyspsh** soil‑physics forward model, with the numerical fitting
-re‑implemented in pure **NumPy + SciPy** (`differential_evolution`) for speed.
 
 Released under the **MIT License** — see [LICENSE](LICENSE).
