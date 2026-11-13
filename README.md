@@ -32,6 +32,16 @@ clean lab‑style interface — on **Windows and Linux**.
 
 ---
 
+## 🆕 3.0.2 — better fits
+
+- **More reliable optimisation.** Scale parameters (α, hm, Ks, Ksnc, K(hₐ) …) span several decades, and the
+  previous linear search almost never sampled small values — fine-textured soils with a high air-entry
+  suction could end in a false optimum (e.g. a HYPROP sample where Brunswick vG gave θ NSE 0.85 instead of 0.994).
+  Every fit now also searches these parameters on a log scale and keeps the better result, so a fit is
+  never worse than before. On 100 database soils, 73–91 % of fits improved, many by more than 2×.
+- **Exports in the desktop app** (report, CSV, figures, session) are written by the app through the Save dialog,
+  so repeated exports are never blocked.
+
 ## 🆕 3.0.1
 
 - **Fits any screen** — the whole window scales to your monitor, laptop, tablet or phone (up to 4K); nothing scrolls and no browser zoom is needed. Plots are always square and sized to the free space.
@@ -86,15 +96,15 @@ Download from the **[latest release](../../releases/latest)**:
 
 | Platform | File | How |
 |---|---|---|
-| **Windows** 10/11 (x64) | `SWRC-HCC-Fitter-3.0.1-setup.exe` | Double‑click and follow the wizard. Everything is included — nothing is downloaded, no Python or .NET needed. Upgrades an existing 1.x installation. |
-| **Linux** (x64) | `SWRC-HCC-Fitter-3.0.1-linux-x64.run` | `chmod +x SWRC-HCC-Fitter-3.0.1-linux-x64.run && ./SWRC-HCC-Fitter-3.0.1-linux-x64.run` |
+| **Windows** 10/11 (x64) | `SWRC-HCC-Fitter-3.0.2-setup.exe` | Double‑click and follow the wizard. Everything is included — nothing is downloaded, no Python or .NET needed. Upgrades an existing 1.x installation. |
+| **Linux** (x64) | `SWRC-HCC-Fitter-3.0.2-linux-x64.run` | `chmod +x SWRC-HCC-Fitter-3.0.2-linux-x64.run && ./SWRC-HCC-Fitter-3.0.2-linux-x64.run` |
 
 **Linux notes**
 - Run the installer as a normal user to install into `~/.local`, or with `sudo` for a system‑wide install in `/opt`.
 - Start it from your application menu or with `swrc-hcc-fitter` — the interface opens in your browser.
 - The kernel uses the system libraries `libgfortran5` and `libgomp1` (installed automatically with `sudo`).
 - **Host the web version** yourself: `sudo systemctl enable --now swrc-hcc-fitter` serves it on port 8050 (put nginx/Caddy with TLS in front).
-- Remove with `./SWRC-HCC-Fitter-3.0.1-linux-x64.run --uninstall`.
+- Remove with `./SWRC-HCC-Fitter-3.0.2-linux-x64.run --uninstall`.
 
 ---
 
