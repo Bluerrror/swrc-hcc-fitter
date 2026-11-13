@@ -35,7 +35,7 @@ clean lab‑style interface — on **Windows and Linux**.
 ## 🆕 3.0.1
 
 - **Fits any screen** — the whole window scales to your monitor, laptop, tablet or phone (up to 4K); nothing scrolls and no browser zoom is needed. Plots are always square and sized to the free space.
-- **Calm, steady interface** — results update in place after a fit (no flashing or redrawing), and nothing moves when you hover or click.
+- **Calm, steady interface** — the panes keep their size while you work (ticking NLL, learner mode or another model changes nothing else on screen), results update in place after a fit, and nothing moves when you hover or click.
 - **One-click example data** — picking a soil from *“No data? Try a database”* loads it straight away.
 - Plot text, lines and legend scale with the plot size, so small and very large screens both stay readable.
 
