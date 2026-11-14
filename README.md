@@ -32,6 +32,15 @@ clean lab‑style interface — on **Windows and Linux**.
 
 ---
 
+## 🆕 3.0.3 — licences and credits
+
+- **Licences & credits** in the app footer lists every bundled database, library and font with its licence text
+  and the paper behind every model. Every package now ships `LICENSE` and
+  [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+- The Inter typeface is bundled with the app. The interface makes no request to Google Fonts or any other third-party server.
+- The Windows kernel no longer contains any LGPL code (libquadmath), and the normal-distribution tail used for the
+  Shapiro–Wilk p-value is now the fdlibm `erfc` (accurate to about 1e-16, was 1e-7). Fit results are unchanged.
+
 ## 🆕 3.0.2 — better fits
 
 - **More reliable optimisation.** Scale parameters (α, hm, Ks, Ksnc, K(hₐ) …) span several decades, and the
@@ -96,15 +105,15 @@ Download from the **[latest release](../../releases/latest)**:
 
 | Platform | File | How |
 |---|---|---|
-| **Windows** 10/11 (x64) | `SWRC-HCC-Fitter-3.0.2-setup.exe` | Double‑click and follow the wizard. Everything is included — nothing is downloaded, no Python or .NET needed. Upgrades an existing 1.x installation. |
-| **Linux** (x64) | `SWRC-HCC-Fitter-3.0.2-linux-x64.run` | `chmod +x SWRC-HCC-Fitter-3.0.2-linux-x64.run && ./SWRC-HCC-Fitter-3.0.2-linux-x64.run` |
+| **Windows** 10/11 (x64) | `SWRC-HCC-Fitter-3.0.3-setup.exe` | Double‑click and follow the wizard. Everything is included — nothing is downloaded, no Python or .NET needed. Upgrades an existing 1.x installation. |
+| **Linux** (x64) | `SWRC-HCC-Fitter-3.0.3-linux-x64.run` | `chmod +x SWRC-HCC-Fitter-3.0.3-linux-x64.run && ./SWRC-HCC-Fitter-3.0.3-linux-x64.run` |
 
 **Linux notes**
 - Run the installer as a normal user to install into `~/.local`, or with `sudo` for a system‑wide install in `/opt`.
 - Start it from your application menu or with `swrc-hcc-fitter` — the interface opens in your browser.
 - The kernel uses the system libraries `libgfortran5` and `libgomp1` (installed automatically with `sudo`).
 - **Host the web version** yourself: `sudo systemctl enable --now swrc-hcc-fitter` serves it on port 8050 (put nginx/Caddy with TLS in front).
-- Remove with `./SWRC-HCC-Fitter-3.0.2-linux-x64.run --uninstall`.
+- Remove with `./SWRC-HCC-Fitter-3.0.3-linux-x64.run --uninstall`.
 
 ---
 
@@ -181,6 +190,25 @@ A sample may have only SWRC or only HCC data. Hover any **ⓘ** for in‑app hel
 - **Wang, Ma & Vereecken (2025)**, *WRR* — generalized framework for unimodal and bimodal soil hydraulic properties.
 - **Peters, Iden & Durner (2023)**, *HESS* 27:4579 — capillary‑bundle conductivity models. <https://doi.org/10.5194/hess-27-4579-2023>
 - **Saito, Šimůnek & Mohanty (2006)**, *VZJ* — isothermal vapor conductivity.
+
+## ⚖️ Licences, data and citations
+
+- **The app's own code** is MIT-licensed ([LICENSE](LICENSE)). The MIT License does **not** cover the bundled
+  data, libraries, runtimes or fonts. They keep their own licences, which are listed with the full texts in
+  **[THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)**. The app shows the same list under **Licences & credits**
+  (footer link; on phones, the ⚖ button in the bottom bar).
+- **Example databases:** Hohenbrink et al. (2023) dataset, CC BY 4.0, <https://doi.org/10.5880/fidgeo.2023.012> ·
+  UNSODA 2.0, U.S. Public Domain, <https://doi.org/10.15482/USDA.ADC/1173246> · EU-HYDI public subset v1.1.0,
+  CC BY 4.0, <https://doi.org/10.5281/zenodo.10987813> (cite as "ESDAC/EU-HYDI" and Weynants et al. 2013).
+  The app keeps only the measured θ(h)/K(h) points and texture of each sample, converted to pF and log₁₀(cm d⁻¹).
+  The data authors do not endorse this software.
+- **Libraries:** plotly.js 3.6.0 (MIT), KaTeX 0.16.11 and its fonts (MIT), .NET 8 / ASP.NET Core / WPF (MIT),
+  ExcelDataReader 3.7.0 (MIT), Microsoft WebView2 SDK (Microsoft BSD-style licence), GNU Fortran/OpenMP runtime
+  (GPL-3.0 with the GCC Runtime Library Exception), MinGW-w64 runtime and winpthreads
+  (ZPL-2.1 / MIT), fdlibm (Sun notice), and the Inter typeface (SIL OFL 1.1, bundled with the app).
+- **Models:** every retention, conductivity and statistical model is credited to its original paper, with
+  DOIs, in [THIRD_PARTY_NOTICES.md § 4](THIRD_PARTY_NOTICES.md#4-models-equations-and-methods). The selected
+  model's paper is also named on hover in the model matrix.
 
 ## 🔗 Links
 
