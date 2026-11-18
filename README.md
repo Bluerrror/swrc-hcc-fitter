@@ -32,6 +32,29 @@ clean lab‑style interface — on **Windows and Linux**.
 
 ---
 
+## 🆕 3.1.0 — Simple mode, model comparison, full-screen figures, readable on every screen
+
+Thanks to **Prof. Tobias Weber** for the review behind most of these changes.
+
+- **Simple | Power user.** The app opens in *Simple* mode: van Genuchten–Mualem (**VGM**, m = 1 − 1/n) and
+  Brunswick van Genuchten (**BW-VGM**), uni-, bi- or trimodal, with the Mualem conductivity model and the paper
+  defaults; it starts with unimodal VGM. *Power user* shows everything as before — 96 retention models, 6 conductivity
+  models and the expert options — and starts with unimodal BW-VGM. Your choice is remembered; restoring a session that
+  uses a Power-only model or option switches to Power user automatically and never changes the model.
+- **Several models at once.** Click selects one model; **Ctrl+click** (⌘+click) adds or removes further models, also
+  across modalities (e.g. unimodal VGM + bimodal VGM + unimodal BW-VGM), up to 10. The selection is shown under the
+  matrix (★ = primary model, ✕ to remove, *clear*). On phones and tablets a *compare several* toggle makes taps additive.
+  All selected models are fitted together and appear in the ranking, plots, CSV exports and the PDF report.
+- **Full-screen figures.** Every plot has a full-screen button: the figure is re-drawn over the whole window at full
+  resolution, with its legend, uncertainty bands, zoom and a ⬇ PNG export; Esc or ✕ closes it (web, desktop, phone).
+- **Readable on small screens, browser zoom works.** 3.0.x shrank the whole interface to fit small laptop screens
+  (labels ≈ 5 px at 1280 × 650) and followed the window size, so Ctrl + / Ctrl − was undone. Now the interface is only
+  ever scaled *up* (on big monitors, from the screen size), no label is smaller than 11 px, the control panes wrap onto
+  two rows on narrower windows and the page scrolls when it does not fit. Ctrl + / Ctrl − behave like on any website.
+- **Phones:** tapping a model no longer leaves the equation pop-up stuck over the page (a long press shows the
+  equations, with ✕); ⓘ tips close on the next tap.
+- Fit results are unchanged (same Fortran kernel 2.2.1).
+
 ## 🆕 3.0.3 — licences and credits
 
 - **Licences & credits** in the app footer lists every bundled database, library and font with its licence text
@@ -78,11 +101,11 @@ evaluated with OpenMP. Results are deterministic — identical on Windows and Li
 
 - 🧮 **96 retention models** — 8 basic functions × {uni·bi·tri‑modal} × 4 full‑range variants (original · Brunswick · PDI · Wang)
 - 💧 **6 conductivity models** — Mualem / Burdine / Alexander–Skaggs / Childs–Collis‑George + Gardner exponential & power; tick several to compare
-- 🧾 **Equations on hover** — point at any model in the matrix to see its θ(h), K(h) and conductivity model in rendered LaTeX
+- 🧾 **Equations on hover** — point at any model in the matrix (long-press on a touch screen) to see its θ(h), K(h) and conductivity model in rendered LaTeX
 - 🎯 **Three fit objectives** — **nRMSE**, **NSE**, or Gaussian **NLL** (puts θ and K on one scale)
 - 📈 **Two uncertainty modes** — **bootstrap** CIs / confidence + prediction bands, *or* **likelihood (NLL)** uncertainty with calibrated or user‑given σ
 - 🏆 **Model ranking** — NSE (colour‑graded), **ΔAICc and Akaike weights** for every compared model; parameters stuck at a search bound are flagged
-- 🌈 **Model comparison** — `Ctrl`+click models to overlay; each curve has its own colour and matching 95 % band
+- 🌈 **Model comparison** — `Ctrl`/`⌘`+click up to 10 models (also across modalities; *compare several* on touch screens) and fit them together; each curve has its own colour
 - 📊 **Statistical analysis** — RMSE · NSE · KGE · NLL per branch, AICc, σ, water content & plant‑available water with CIs, residual normality (Shapiro–Wilk)
 - 📄 **PDF report** — dashboard KPIs, colour‑graded leaderboard, θ(h)/K(h)/K(θ) plots, comparison bars, recommended‑model breakdown
 - 🌫️ **Isothermal vapor conductivity** — optional dry‑range K floor (Saito, Šimůnek & Mohanty 2006)
@@ -95,7 +118,9 @@ evaluated with OpenMP. Results are deterministic — identical on Windows and Li
 - ⏱️ **Fast & cancellable** — live progress with time remaining; `Esc` cancels
 - ⌨️ **Shortcuts** — `Ctrl+Enter` fit · `Ctrl+O` open · `Ctrl+S` save session · `Ctrl+P` report
 - 💾 **Sessions** — save/restore a fit as JSON (sessions from 1.x open too); your settings are remembered
-- 🖥️ **One‑window layout** — everything fits on one screen at any size, from phone to 4K, with no scrolling
+- 🧭 **Simple | Power user** — Simple: VGM and BW-VGM with paper defaults; Power user: every model and expert option
+- 🔍 **Full-screen figures** — open any plot over the whole window at full resolution, with zoom and PNG export
+- 🖥️ **Any screen** — one-page layout on big monitors (scaled up from the screen size), readable text and scrolling on small laptops, phone layout with a tab bar; browser zoom (Ctrl + / Ctrl −) works normally
 
 ---
 
@@ -105,15 +130,15 @@ Download from the **[latest release](../../releases/latest)**:
 
 | Platform | File | How |
 |---|---|---|
-| **Windows** 10/11 (x64) | `SWRC-HCC-Fitter-3.0.3-setup.exe` | Double‑click and follow the wizard. Everything is included — nothing is downloaded, no Python or .NET needed. Upgrades an existing 1.x installation. |
-| **Linux** (x64) | `SWRC-HCC-Fitter-3.0.3-linux-x64.run` | `chmod +x SWRC-HCC-Fitter-3.0.3-linux-x64.run && ./SWRC-HCC-Fitter-3.0.3-linux-x64.run` |
+| **Windows** 10/11 (x64) | `SWRC-HCC-Fitter-3.1.0-setup.exe` | Double‑click and follow the wizard. Everything is included — nothing is downloaded, no Python or .NET needed. Upgrades an existing 1.x installation. |
+| **Linux** (x64) | `SWRC-HCC-Fitter-3.1.0-linux-x64.run` | `chmod +x SWRC-HCC-Fitter-3.1.0-linux-x64.run && ./SWRC-HCC-Fitter-3.1.0-linux-x64.run` |
 
 **Linux notes**
 - Run the installer as a normal user to install into `~/.local`, or with `sudo` for a system‑wide install in `/opt`.
 - Start it from your application menu or with `swrc-hcc-fitter` — the interface opens in your browser.
 - The kernel uses the system libraries `libgfortran5` and `libgomp1` (installed automatically with `sudo`).
 - **Host the web version** yourself: `sudo systemctl enable --now swrc-hcc-fitter` serves it on port 8050 (put nginx/Caddy with TLS in front).
-- Remove with `./SWRC-HCC-Fitter-3.0.3-linux-x64.run --uninstall`.
+- Remove with `./SWRC-HCC-Fitter-3.1.0-linux-x64.run --uninstall`.
 
 ---
 
