@@ -32,6 +32,54 @@ clean lab‑style interface — on **Windows and Linux**.
 
 ---
 
+## 🆕 3.2.0 — real 95 % confidence intervals and 95 % prediction intervals
+
+Requested by the author: the intervals are now statistically rigorous in **both** uncertainty modes, for θ(h), K(h)
+and K(θ), from the **joint** θ + K fit (one parameter vector for both branches), and validated by a coverage simulation.
+
+- **95 % confidence interval** (where the true curve lies) and **95 % prediction interval** (where a new measurement
+  falls) are drawn on Retention θ(h), Conductivity K(h) and Conductivity K(θ); capacity and pore-size keep their
+  95 % confidence interval. Legends, tooltips, the full-screen viewer, the PDF report, the parameter table and the CSV
+  export name each interval and its method, e.g. “95 % confidence interval (bootstrap)”, “95 % prediction interval
+  (likelihood)”.
+- **Bootstrap mode:** pairs bootstrap of the joint fit (θ and K points resampled, both branches refitted together).
+  Confidence interval = percentiles of the refitted curves with the small-sample expansion √(n/df)·t(df)/z per branch
+  (Hesterberg 2015); prediction interval = bootstrap predictive interval (Stine 1985; Davison & Hinkley 1997, §6.3.3):
+  refit curve + resampled, √(n/df)-inflated residuals of the fit (θ residuals for θ, log₁₀ K residuals for K).
+  3.1 used “confidence band ± 1.96 σ”.
+- **Likelihood (NLL) mode:** one joint Gauss–Newton covariance of all parameters (log scale for scale parameters),
+  σ per branch with its uncertainty (σ² = SSE/χ²(n − p)), 2000 parameter draws truncated to the bounds (not clipped);
+  confidence interval = percentiles of the drawn curves, prediction interval = drawn curve + noise with that draw's σ.
+  NLL mode now shows the prediction interval too. New kernel export `swrc_likelihood_pi` (kernel 2.3.0).
+- **Every selected model gets its own intervals** (3.1 bootstrapped the primary model only): with several models
+  each one has its own bootstrap or likelihood draws. The plots first show the intervals of the primary ★ model;
+  ticks under each model in the legend (*confidence interval* / *prediction interval*, plus an *all models* row)
+  choose what is drawn in every plot, the full-screen view, ⬇ Figure and the PDF report.
+- **Select several models** is now a visible tick above the model matrix on every device (each click then adds or
+  removes a model, also across uni-, bi- and trimodal); Ctrl+click still works.
+- **Toggling intervals keeps the zoom** of every plot and of the full-screen view, which has the same per-model
+  interval ticks as the legend (one shared choice).
+- **Fixed control-band height:** all five panes have the same height in Simple and Power user mode (set by the window
+  size only); a pane with more content scrolls inside it, so Power user mode no longer shrinks the plots. The
+  conductivity models are chosen with the same round markers as the model matrix (one or several).
+- **Curves CSV** gains `theta_conf_lo/hi`, `theta_pred_lo/hi`, `log10K_conf_lo/hi`, `log10K_pred_lo/hi`,
+  `log10K_at_theta_conf_lo/hi`, `log10K_at_theta_pred_lo/hi` and `interval_method` (appended after the old columns).
+- **Coverage test** (`tools/coverage_test.py`, 300 simulated HYPROP + WP4-like data sets per model: 41 θ points at
+  pF 0.3–4.2, 13 log₁₀ K points at pF 0–3, σθ = 0.008, σlogK = 0.15; bootstrap B = 100; 3.1 in brackets):
+
+| Coverage in % (target 95) | VGM bootstrap 3.2 (3.1) | VGM likelihood 3.2 (3.1) | BW-VGM bootstrap 3.2 (3.1) | BW-VGM likelihood 3.2 (3.1) |
+|---|---|---|---|---|
+| θ(h), confidence interval | **93.3** (91.6) | **94.3** (88.1) | **96.0** (94.1) | **94.7** (89.1) |
+| log₁₀ K(h), confidence interval | **91.8** (86.0) | **94.2** (60.4) | **95.0** (86.9) | **94.7** (54.5) |
+| K(θ), confidence interval | **92.9** (77.6) | **95.2** (49.9) | **95.8** (82.2) | **95.6** (50.2) |
+| θ, prediction interval (new measurement) | **94.9** (97.6) | **94.7** (—) | **95.2** (97.7) | **94.8** (—) |
+| log₁₀ K, prediction interval (new measurement) | **93.2** (95.6) | **94.2** (—) | **95.2** (94.9) | **94.9** (—) |
+| K(θ), prediction interval (new log₁₀ K at known θ) | **94.1** (—) | **94.9** (—) | **95.6** (—) | **95.2** (—) |
+
+  Joint coverage (θ AND K covered at the same pF) is ≈ 90 %, as expected for two pointwise 95 % intervals. A sparser
+  design and per-pF-region results are in the [manual §5.7](https://bluerror.com/manual.html#uncertainty).
+- Fitted parameters and curves are unchanged (same fits as 3.1.0; only the intervals change).
+
 ## 🆕 3.1.0 — Simple mode, model comparison, full-screen figures, readable on every screen
 
 Thanks to **Prof. Tobias Weber** for the review behind most of these changes.
@@ -130,15 +178,15 @@ Download from the **[latest release](../../releases/latest)**:
 
 | Platform | File | How |
 |---|---|---|
-| **Windows** 10/11 (x64) | `SWRC-HCC-Fitter-3.1.0-setup.exe` | Double‑click and follow the wizard. Everything is included — nothing is downloaded, no Python or .NET needed. Upgrades an existing 1.x installation. |
-| **Linux** (x64) | `SWRC-HCC-Fitter-3.1.0-linux-x64.run` | `chmod +x SWRC-HCC-Fitter-3.1.0-linux-x64.run && ./SWRC-HCC-Fitter-3.1.0-linux-x64.run` |
+| **Windows** 10/11 (x64) | `SWRC-HCC-Fitter-3.2.0-setup.exe` | Double‑click and follow the wizard. Everything is included — nothing is downloaded, no Python or .NET needed. Upgrades an existing 1.x installation. |
+| **Linux** (x64) | `SWRC-HCC-Fitter-3.2.0-linux-x64.run` | `chmod +x SWRC-HCC-Fitter-3.2.0-linux-x64.run && ./SWRC-HCC-Fitter-3.2.0-linux-x64.run` |
 
 **Linux notes**
 - Run the installer as a normal user to install into `~/.local`, or with `sudo` for a system‑wide install in `/opt`.
 - Start it from your application menu or with `swrc-hcc-fitter` — the interface opens in your browser.
 - The kernel uses the system libraries `libgfortran5` and `libgomp1` (installed automatically with `sudo`).
 - **Host the web version** yourself: `sudo systemctl enable --now swrc-hcc-fitter` serves it on port 8050 (put nginx/Caddy with TLS in front).
-- Remove with `./SWRC-HCC-Fitter-3.1.0-linux-x64.run --uninstall`.
+- Remove with `./SWRC-HCC-Fitter-3.2.0-linux-x64.run --uninstall`.
 
 ---
 
@@ -180,9 +228,9 @@ results) and switch the Brunswick film base to h₀/hₐ (Peters & Iden 2021).
 
 | Objective | What it does | Uncertainty |
 |---|---|---|
-| **nRMSE** | range‑normalised RMSE, so θ and K weigh equally | bootstrap |
-| **NSE**   | variance‑normalised (Nash–Sutcliffe) | bootstrap |
-| **NLL**   | Gaussian negative log‑likelihood; jointly calibrates the mean and noise **σ** | likelihood band |
+| **nRMSE** | range‑normalised RMSE, so θ and K weigh equally | bootstrap: 95 % confidence interval + 95 % prediction interval |
+| **NSE**   | variance‑normalised (Nash–Sutcliffe) | bootstrap: 95 % confidence interval + 95 % prediction interval |
+| **NLL**   | Gaussian negative log‑likelihood; jointly calibrates the mean and noise **σ** | likelihood: 95 % confidence interval + 95 % prediction interval |
 
 Reported per branch: **RMSE · NSE · KGE · NLL**, plus **AICc / ΔAICc / Akaike weight** for model
 selection and water‑content / plant‑available‑water summaries at standard suctions.
@@ -215,6 +263,7 @@ A sample may have only SWRC or only HCC data. Hover any **ⓘ** for in‑app hel
 - **Wang, Ma & Vereecken (2025)**, *WRR* — generalized framework for unimodal and bimodal soil hydraulic properties.
 - **Peters, Iden & Durner (2023)**, *HESS* 27:4579 — capillary‑bundle conductivity models. <https://doi.org/10.5194/hess-27-4579-2023>
 - **Saito, Šimůnek & Mohanty (2006)**, *VZJ* — isothermal vapor conductivity.
+- Intervals: **Efron & Tibshirani (1993)** <https://doi.org/10.1007/978-1-4899-4541-9> · **Stine (1985)**, *JASA* 80:1026 <https://doi.org/10.1080/01621459.1985.10478220> · **Davison & Hinkley (1997)**, §6.3.3 <https://doi.org/10.1017/CBO9780511802843> · **Hesterberg (2015)**, *Am. Stat.* 69:371 <https://doi.org/10.1080/00031305.2015.1089789> · **Bates & Watts (1988)** <https://doi.org/10.1002/9780470316757> · **Seber & Wild (1989)** <https://doi.org/10.1002/0471725315> · **Gelman et al. (2013)**, *Bayesian Data Analysis* <https://doi.org/10.1201/b16018> · **Marsaglia & Tsang (2000)** <https://doi.org/10.1145/358407.358414>.
 
 ## ⚖️ Licences, data and citations
 
